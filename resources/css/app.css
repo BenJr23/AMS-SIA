@@ -1,0 +1,332 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Navbar Styling */
+.navbar {
+    background-color: #003366; /* Dark Blue */
+    padding: 1rem 2rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.5rem;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* Button Styling */
+.nav-buttons .btn {
+    padding: 0.5rem 1rem;
+    margin-left: 1rem;
+    border: none;
+    border-radius: 20px; /* Rounded corners */
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease; /* Smooth transitions */
+}
+
+/* Log In Button */
+.btn-login {
+    background-color: #00509e;
+    color: white;
+}
+
+.btn-login:hover {
+    background-color: #003f7f;
+}
+
+.btn-login:active {
+    background-color: #002e5c;
+    box-shadow: 0 0 0 3px rgba(0, 80, 158, 0.3);
+}
+
+/* Register Button */
+.btn-register {
+    background-color: #0074cc;
+    color: white;
+}
+
+.btn-register:hover {
+    background-color: #005bb5;
+}
+
+.btn-register:active {
+    background-color: #004288;
+    box-shadow: 0 0 0 3px rgba(0, 116, 204, 0.3);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        text-align: center;
+    }
+    .nav-buttons {
+        margin-top: 1rem;
+    }
+}
+
+/* General Form Styling */
+.form-container {
+    background-color: #f7f9fc; /* Light grayish background for forms */
+    padding: 2rem;
+    margin: 2rem auto;
+    max-width: 400px;
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.form-container h1 {
+    font-size: 1.75rem;
+    font-weight: bold;
+    color: #003366; /* Matching dark blue */
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    display: block;
+    font-size: 1rem;
+    color: #003366; /* Dark Blue */
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ccc; /* Light gray */
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #00509e; /* Highlight with blue */
+    box-shadow: 0 0 0 3px rgba(0, 80, 158, 0.3);
+}
+
+/* Submit Button Styling */
+.form-container button {
+    width: 100%;
+    padding: 0.75rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: white;
+    background-color: #00509e; /* Dark Blue */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.form-container button:hover {
+    background-color: #003f7f;
+}
+
+.form-container button:active {
+    background-color: #002e5c;
+    box-shadow: 0 0 0 3px rgba(0, 80, 158, 0.3);
+}
+
+/* Links (e.g., Forgot Password) */
+.form-container a {
+    display: block;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: #0074cc; /* Bright Blue */
+    text-align: center;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.form-container a:hover {
+    color: #005bb5;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .form-container {
+        margin: 1rem;
+        padding: 1.5rem;
+    }
+}
+
+/* Sidebar Styling */
+.sidebar {
+    background-color: #003366; /* Dark Blue */
+    width: 250px;
+    min-height: 100vh;
+    padding: 2rem 1rem;
+    box-shadow: 2px 0 4px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.sidebar-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sidebar-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 2rem;
+}
+
+.sidebar-buttons {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.sidebar-btn {
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 0.75rem 1rem;
+    margin: 0.5rem 0;
+    font-size: 1rem;
+    font-weight: 600;
+    color: white;
+    text-decoration: none;
+    border-radius: 20px; /* Rounded corners */
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+/* Employees Button */
+.btn-employees {
+    background-color: #0074cc;
+}
+
+.btn-employees:hover {
+    background-color: #005bb5;
+}
+
+.btn-employees:active {
+    background-color: #004288;
+    box-shadow: 0 0 0 3px rgba(0, 116, 204, 0.3);
+}
+
+/* Register Button */
+.btn-register {
+    background-color: #00509e;
+}
+
+.btn-register:hover {
+    background-color: #003f7f;
+}
+
+.btn-register:active {
+    background-color: #002e5c;
+    box-shadow: 0 0 0 3px rgba(0, 80, 158, 0.3);
+}
+
+/* Sidebar Styling */
+.sidebar {
+    background-color: #003366; /* Dark Blue */
+    width: 250px;
+    min-height: 100vh;
+    padding: 2rem 1rem;
+    box-shadow: 2px 0 4px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.sidebar-container {
+    flex-grow: 1;
+}
+
+.sidebar-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 2rem;
+}
+
+.sidebar-buttons {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.sidebar-btn {
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 0.75rem 1rem;
+    margin: 0.5rem 0;
+    font-size: 1rem;
+    font-weight: 600;
+    color: white;
+    text-decoration: none;
+    border-radius: 20px; /* Rounded corners */
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+/* Employees Button */
+.btn-employees {
+    background-color: #0074cc;
+}
+
+.btn-employees:hover {
+    background-color: #005bb5;
+}
+
+.btn-employees:active {
+    background-color: #004288;
+    box-shadow: 0 0 0 3px rgba(0, 116, 204, 0.3);
+}
+
+/* Register Button */
+.btn-register {
+    background-color: #00509e;
+}
+
+.btn-register:hover {
+    background-color: #003f7f;
+}
+
+.btn-register:active {
+    background-color: #002e5c;
+    box-shadow: 0 0 0 3px rgba(0, 80, 158, 0.3);
+}
+
+/* Log Out Button */
+.sidebar-logout {
+    background-color: #d9534f; /* Red */
+}
+
+.sidebar-logout:hover {
+    background-color: #c9302c;
+}
+
+.sidebar-logout:active {
+    background-color: #ac2925;
+    box-shadow: 0 0 0 3px rgba(217, 83, 79, 0.3);
+}                                   
