@@ -330,3 +330,7 @@
     background-color: #ac2925;
     box-shadow: 0 0 0 3px rgba(217, 83, 79, 0.3);
 }                                   
+
+.error {
+    @apply text-xs text-red-500 mt-1;
+}

@@ -19,7 +19,7 @@ class AuthController extends Controller
             'created_by' => ['required'],
         ]);
         User::create($validatedData);
-        return redirect()->route('login')->with('success', 'Account created successfully! Please log in.');
+        return redirect()->route('register')->with('success', 'Account created successfully!');
     }
     public function login(Request $request)
     {
