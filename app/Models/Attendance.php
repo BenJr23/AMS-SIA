@@ -20,4 +20,8 @@ class Attendance extends Model
     {
         return $this->belongsTo(App\Models\User::class);
     }
+    public function dependentEntities()
+    {
+        return $this->hasMany(DependentEntity::class);
+    }
 }

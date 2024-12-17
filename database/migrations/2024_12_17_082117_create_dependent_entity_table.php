@@ -13,15 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('attendances', function (Blueprint $table) {
+        Schema::create('dependent_entities', function (Blueprint $table) {
             $table->id(); // Primary key
-            $table->time('time_in')->nullable(); // Time in column
-            $table->time('time_out')->nullable(); // Time out column
-            $table->unsignedBigInteger('user_id')->nullable(); // Foreign key
+            $table->string('username'); // Username column
+            $table->string('email'); // Email column
+            $table->unsignedBigInteger('attendance_id'); // Foreign key for attendance
             $table->timestamps(); // Created at & Updated at
 
-            // Define the foreign key constraint
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            // Foreign key constraint
+            $table->foreign('attendance_id')->references('id')->on('attendances')->onDelete('cascade');
         });
     }
 
@@ -32,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('attendance');
+        Schema::dropIfExists('dependent_entities');
     }
 };

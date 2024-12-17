@@ -12,6 +12,7 @@
         <div class="container">
             <a href="#" class="logo">MyApp</a>
             <div class="nav-buttons">
+                <button class="btn btn-login" onclick="location.href='{{ route('guestclocking') }}'">Guest</button>
                 <button class="btn btn-login" onclick="location.href='{{ route('login') }}'">Log In</button>
 
                 <button class="btn btn-register" onclick="location.href='{{ route('clocking') }}'">Attendance</button>
