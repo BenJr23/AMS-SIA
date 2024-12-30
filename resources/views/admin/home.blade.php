@@ -47,7 +47,6 @@
     @endauth
 </x-admin>
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
   // Present Chart
   const presentCtx = document.getElementById('presentChart').getContext('2d');

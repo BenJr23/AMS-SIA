@@ -24,8 +24,6 @@
     </nav>
 
 
-
-
     <main>
         {{$slot}}
     </main>

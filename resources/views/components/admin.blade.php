@@ -39,45 +39,36 @@
             <a href="#" onclick="openModal('LogoutModal')" class="sidebar-item flex items-center py-3 px-6 rounded-lg text-white hover:bg-red-500 hover:text-white transition-colors duration-300 text-lg mt-auto" id="logout-link">
                 <i class="fas fa-sign-out-alt mr-4"></i> Log Out
             </a>
-            <!-- Hidden logout form -->
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                @csrf
-            </form>
         </div>
     </div>
 
      <!-- Logout Modal -->
-<div id="LogoutModal" class="fixed inset-0 bg-gray-900 bg-opacity-50 items-center justify-center hidden z-50">
-    <div class="bg-white p-6 rounded-lg shadow-md w-[60%] max-w-sm">
-        <h1 class="text-2xl font-semibold text-center mb-6">Are you sure you want to log out of this account?</h1>
+        <div id="LogoutModal" class="fixed inset-0 bg-gray-900 bg-opacity-50 items-center justify-center hidden z-50">
+            <div class="bg-white p-6 rounded-lg shadow-md w-[60%] max-w-sm">
+                <h1 class="text-2xl font-semibold text-center mb-6">Are you sure you want to log out of this account?</h1>
 
-        <!-- Hidden Logout Form -->
-        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-            @csrf
-        </form>
+                <!-- Hidden Logout Form -->
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
 
-        <!-- Inline Cancel and Log Out Buttons -->
-        <div class="flex justify-center space-x-4">
-            <!-- Cancel Button with Icon -->
-            <button type="button" onclick="closeModal('LogoutModal')" class="flex items-center px-4 py-2 bg-gray-300 text-gray-700 rounded hover:bg-gray-200">
-                <i class="fas fa-times mr-2"></i> Cancel
-            </button>
+                <!-- Inline Cancel and Log Out Buttons -->
+                <div class="flex justify-center space-x-4">
+                    <!-- Cancel Button with Icon -->
+                    <button type="button" onclick="closeModal('LogoutModal')" class="flex items-center px-4 py-2 bg-gray-300 text-gray-700 rounded hover:bg-gray-200">
+                        <i class="fas fa-times mr-2"></i> Cancel
+                    </button>
 
-            <!-- Log Out Button with Icon -->
-            <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="flex items-center px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 transition-colors duration-300">
-                <i class="fas fa-sign-out-alt mr-2"></i> Log Out
-            </a>
+                    <!-- Log Out Button with Icon -->
+                    <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="flex items-center px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 transition-colors duration-300">
+                        <i class="fas fa-sign-out-alt mr-2"></i> Log Out
+                    </a>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
 
 
    
-
-
-
-
-
     <!-- Main Content -->
     <div class="lg:ml-40 pt-20 pb-8 w-full flex justify-center lg:pl-0 pl-3">
         <!-- Header -->
