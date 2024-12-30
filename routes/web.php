@@ -22,6 +22,14 @@ Route::get('/home', function () {
     return view('admin.home');
 })->name('home');
 
+Route::get('/guest', function () {
+    return view('auth.guest');
+})->name('guest');
+
+Route::get('/employee', function () {
+    return view('admin.employee');
+})->name('employee');
+
 Route::get('/clocking', function () {
     return view('auth.clocking');
 })->name('clocking');
