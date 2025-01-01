@@ -35,7 +35,6 @@
                 </a>
             </div>
             <!-- Log Out Link -->
-            
             <a href="#" onclick="openModal('LogoutModal')" class="sidebar-item flex items-center py-3 px-6 rounded-lg text-white hover:bg-red-500 hover:text-white transition-colors duration-300 text-lg mt-auto" id="logout-link">
                 <i class="fas fa-sign-out-alt mr-4"></i> Log Out
             </a>
