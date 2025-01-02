@@ -10,9 +10,9 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
-Route::get('/register', function () {
-    return view('admin.register');
-})->name('register');
+Route::get('/reports', function () {
+    return view('admin.reports');
+})->name('reports');
 
 Route::get('/login', function () {
     return view('auth.login');
@@ -38,7 +38,7 @@ Route::get('/clockingform', function () {
     return view('staff.clockingform');
 })->name('clockingform');
 
-Route::post('/register', [AuthController::class, 'register'])->name('register');
+
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 Route::post('/clocking', [AuthController::class, 'clocking'])->name('clocking');

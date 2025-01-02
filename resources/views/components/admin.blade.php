@@ -30,8 +30,8 @@
                     <i class="fas fa-users mr-4"></i> Employees
                 </a>
                 <!-- Register Link -->
-                <a href="/register" class="sidebar-item flex items-center py-3 px-6 rounded-lg text-white hover:bg-green-500 hover:text-white transition-colors duration-300 text-lg" id="register-link">
-                    <i class="fas fa-user-plus mr-4"></i> Register
+                <a href="/reports" class="sidebar-item flex items-center py-3 px-6 rounded-lg text-white hover:bg-green-500 hover:text-white transition-colors duration-300 text-lg" id="register-link">
+                    <i class="fas fa-user-plus mr-4"></i> Reports
                 </a>
             </div>
             <!-- Log Out Link -->
