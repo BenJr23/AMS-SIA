@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id(); // Primary key
             $table->time('time_in')->nullable(); // Time in column
             $table->time('time_out')->nullable(); // Time out column
-            $table->unsignedBigInteger('user_id'); // Foreign key
+            $table->unsignedBigInteger('user_id')->nullable(); // Foreign key
             $table->timestamps(); // Created at & Updated at
 
             // Define the foreign key constraint

@@ -4,8 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\AttendanceController;
-use App\Http\Controllers\GuestController;
 use App\Http\Controllers\DependentEntityController;
+use App\Http\Controllers\GuestController;
+
 
 
 Route::get('/', function () {

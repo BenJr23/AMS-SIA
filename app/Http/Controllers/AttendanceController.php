@@ -54,7 +54,7 @@ class AttendanceController extends Controller
         ]);
 
         // Step 4: Redirect with a success message
-        return redirect()->route('guest')->with('success', 'Attendance and dependent entity created successfully.');
+        return redirect()->route('guestclockingform')->with('success', 'Attendance and dependent entity created successfully.');
     }
 
     public function show(Attendance $attendance)
