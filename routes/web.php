@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\AttendanceController;
+use App\Http\Controllers\GuestController;
+use App\Http\Controllers\DependentEntityController;
 
 
 Route::get('/', function () {
@@ -46,6 +48,9 @@ Route::get('/clockingform', function () {
     return view('staff.clockingform');
 })->name('clockingform');
 
+Route::get('/guestclockingform', function () {
+    return view('guest.guestclockingform');
+})->name('guestclockingform');
 
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
@@ -57,3 +62,7 @@ Route::put('/attendance/{attendance}', [AttendanceController::class, 'update'])-
 
 
 Route::post('/register', [AuthController::class, 'register'])->name('register');
+
+//guest clocking should be different
+Route::post('/clockval', [GuestController::class, 'clockval'])->name('clockval');
+Route::post('/attendance', [AttendanceController::class, 'store2'])->name('attendance.store2');
