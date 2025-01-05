@@ -54,3 +54,6 @@ Route::post('/clocking', [AuthController::class, 'clocking'])->name('clocking');
 
 Route::post('/attendance', [AttendanceController::class, 'store'])->name('attendance.store');
 Route::put('/attendance/{attendance}', [AttendanceController::class, 'update'])->name('attendance.update');
+
+
+Route::post('/register', [AuthController::class, 'register'])->name('register');

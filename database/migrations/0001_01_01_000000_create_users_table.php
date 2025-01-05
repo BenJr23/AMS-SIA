@@ -3,8 +3,8 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use Illuminate\Support\Facades\DB; // Import DB facade
-use Illuminate\Support\Facades\Hash; // Import Hash facade
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 return new class extends Migration
 {
@@ -16,29 +16,36 @@ return new class extends Migration
         // Create users table
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('username');
-            $table->string('first_name'); // Add first_name column
-            $table->string('last_name');  // Add last_name column
-            $table->string('email')->unique();
-            $table->string('role')->default('user'); // Add role column with default value
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->unsignedBigInteger('created_by'); // Add created_by column
-            $table->foreign('created_by')->references('id')->on('users'); // Set foreign key constraint
-            $table->rememberToken();
-            $table->timestamps();
-        });
+            $table->string('first_name'); // User's first name
+            $table->string('middle_name')->nullable(); // User's middle name
+            $table->string('last_name'); // User's last name
+            $table->string('email')->unique(); // User's email address
+            $table->string('password'); // User's password (hashed)
+            $table->string('phone_no'); // User's phone number
+            $table->date('date_of_birth')->nullable(); // User's date of birth
+            $table->text('address')->nullable(); // User's address
+            $table->string('photo')->nullable(); // File path for the user's photo
+            $table->string('employee_type'); // User's role type
+            $table->unsignedBigInteger('created_by')->nullable(); // ID of the user who created the record
+            $table->timestamps(); // Timestamps for created_at and updated_at
 
-        // Insert default user with role
-        if (!DB::table('users')->where('email', 'admin@example.com')->exists()) {
+            // Foreign key constraint for created_by (optional, if using relationships)
+            $table->foreign('created_by')->references('id')->on('users')->onDelete('cascade');
+        });
+        
+        // Insert default admin user
+        if (!DB::table('users')->where('email', 'rubenjrtbertuso@gmail.com')->exists()) {
             DB::table('users')->insert([
-                'username' => 'benjr23',
                 'first_name' => 'RubenJr',
+                'middle_name' => 'tapiod',
                 'last_name' => 'Bertuso',
                 'email' => 'rubenjrtbertuso@gmail.com',
-                'role' => 'admin', // Assign admin role to default user
-                'password' => Hash::make('benjr23'), // Hash the default password
-                'created_by' => 1, // Set created_by to 0 for initial admin account
+                'phone_no' => '+639272914369',
+                'date_of_birth' => null,
+                'address' => null,
+                'employee_type' => 'admin',
+                'password' => Hash::make('benjr23'),
+                'created_by' => null,
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);
