@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="apple-touch-icon" href="./images/logo.png" sizes="192x192">
+    <link rel="icon" href="./images/logo.png" sizes="192x192">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
@@ -78,20 +78,33 @@
             </button>
 
             <!-- Left Side: User Name & Role -->
-            <div class="flex items-center space-x-4">
-                <div class="w-8 h-8 bg-blue-500 text-white flex items-center justify-center rounded-full">
-                    <i class="fas fa-user"></i>
-                </div>
+            <a href="/profile" class="flex items-center space-x-4">
+                <div class="w-12 h-12 bg-gray-300 rounded-full"></div>
                 <div>
                     <p class="font-semibold text-gray-800">[NAME]</p>
                     <p class="text-sm text-gray-500">Administrator</p>
                 </div>
-            </div>
+            </a>
+
 
             <!-- Right Side: Bell and Settings Icons -->
             <div class="ml-auto flex items-center space-x-4">
-                <i class="fas fa-bell text-gray-600"></i>
-                <i class="fas fa-cog text-gray-600"></i>
+               <!-- Notification Icon -->
+               <div class="relative">
+                    <i id="notificationIcon" class="fa fa-bell text-gray text-xl hover:text-[#028ABE] cursor-pointer"></i>
+                    <!-- Notification Badge -->
+                    <span id="notificationBadge" class="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 bg-red-500 text-white text-xs font-bold rounded-full px-2 py-0.5">
+                    5
+                    </span>
+                    <!-- Notification Box -->
+                    <div id="notificationBox" class="absolute top-10 right-0 bg-white border border-gray-300 rounded-lg shadow-lg w-72 max-h-96 overflow-y-auto hidden z-50">
+                    <div class="p-4 border-b border-gray-200 cursor-pointer hover:bg-gray-100">New message received</div>
+                    <div class="p-4 border-b border-gray-200 cursor-pointer hover:bg-gray-100">Your book is ready for pickup</div>
+                    <div class="p-4 border-b border-gray-200 cursor-pointer hover:bg-gray-100">Reminder: Return due tomorrow</div>
+                    <div class="p-4 text-center text-gray-500">No more notifications</div>
+                    </div>
+                </div>
+                <a a href="/settings"><i class="fas fa-cog text-gray-600"></i></a>
             </div>
         </header>
 
@@ -156,6 +169,19 @@
                 modal.classList.remove('flex'); // Remove the flex class
         }
         }
+
+         // Toggle notification dropdown
+         const notificationIcon = document.getElementById('notificationIcon');
+        const notificationBox = document.getElementById('notificationBox');
+        notificationIcon.addEventListener('click', () => {
+            notificationBox.classList.toggle('hidden');
+        });
+
+        const mobileNotificationIcon = document.getElementById('mobileNotificationIcon');
+        const mobileNotificationBox = document.getElementById('mobileNotificationBox');
+        mobileNotificationIcon.addEventListener('click', () => {
+            mobileNotificationBox.classList.toggle('hidden');
+        });
     </script>
 
 </body>

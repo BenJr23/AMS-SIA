@@ -1,52 +1,77 @@
 <x-layout>
-    <div class="flex items-center justify-center min-h-screen bg-gray-50">
-         <div class="w-full max-w-md bg-white p-6 rounded-lg shadow-md sm:-mt-4 md:-mt-6 lg:-mt-40">
-            <h2 class="text-2xl font-bold text-center text-gray-800 mb-6">Guest</h2>
-
-            <div class="space-y-4">
-                <!-- Username Field -->
-                <div>
-                    <label class="text-sm text-gray-600">Username <span class="text-red-500">*</span></label>
-                    <input type="text" placeholder="Enter your username" class="w-full mt-1 px-3 py-2 border rounded bg-gray-100 text-gray-800" id="username" required>
-                    <p id="usernameError" class="text-red-500 text-sm hidden">Username is required.</p>
-                </div>
-
-                <!-- Email Field -->
-                <div>
-                    <label class="text-sm text-gray-600">Email <span class="text-red-500">*</span></label>
-                    <input type="email" placeholder="example@example.com" class="w-full mt-1 px-3 py-2 border rounded bg-gray-100 text-gray-800" id="email" required>
-                    <p id="emailError" class="text-red-500 text-sm hidden">A valid email is required.</p>
-                </div>
-
-                <!-- Submit Button -->
-                <div>
-                    <button type="submit" class="w-full mt-4 px-3 py-2 bg-blue-500 text-white font-semibold rounded hover:bg-blue-600">Submit</button>
-                </div>
-            </div>
+    <div class="form-container">
+        <div class="flex justify-center items-center mb-5">
+            <img src="./images/logo.png" alt="library logo" class="h-32 w-auto -my-9">
         </div>
-    </div>
 
-    <script>
-        // Validation logic
-        document.querySelector("#username").addEventListener("blur", () => {
-            const username = document.querySelector("#username").value.trim();
-            const usernameError = document.querySelector("#usernameError");
-            if (!username) {
-                usernameError.classList.remove("hidden");
-            } else {
-                usernameError.classList.add("hidden");
-            }
-        });
+        <h1>Guest</h1>
 
-        document.querySelector("#email").addEventListener("blur", () => {
-            const email = document.querySelector("#email").value.trim();
-            const emailError = document.querySelector("#emailError");
-            const emailRegex = /^[^\s@]+@[\^\s@]+\.[^\s@]+$/;
-            if (!email || !emailRegex.test(email)) {
-                emailError.classList.remove("hidden");
-            } else {
-                emailError.classList.add("hidden");
-            }
-        });
-    </script>
+        <form id="clockingForm" action="{{ route('clocking') }}" method="POST">
+            @csrf
+            <div class="form-group">
+                <label for="username" class="text-green-500">Username</label>
+                <input type="text" id="username" name="username" class="border border-gray-300 p-2 rounded focus:ring-2 focus:ring-green-500" required>
+                <p id="usernameError" class="text-red-500 text-sm hidden">Please enter a valid username.</p>
+            </div>
+            <div class="form-group">
+                <label for="email" class="text-green-500">Email</label>
+                <input type="email" id="email" name="email" class="border border-gray-300 p-2 rounded focus:ring-2 focus:ring-green-500" required>
+                <p id="emailError" class="text-red-500 text-sm hidden">Please enter a valid email address.</p>
+            </div>
+            <div class="form-group relative">
+                <label for="password" class="text-green-500">Password</label>
+                <input type="password" id="password" name="password" class="border border-gray-300 p-2 rounded focus:ring-2 focus:ring-green-500 pr-10" required>
+                <!-- Eye icon for password visibility toggle inside the input field -->
+                <i id="togglePassword" class="fas fa-eye absolute right-3 mt-5 cursor-pointer"></i> <!-- Adjust top-2 for lowering -->
+            </div>
+            <button type="submit" class="bg-green-500 text-white hover:bg-green-700 p-2 rounded">Login</button>
+        </form>
+    </div> 
 </x-layout>
+
+<script>
+    // Username Validation
+    document.getElementById('clockingForm').addEventListener('submit', function(event) {
+        let formIsValid = true;
+
+        // Username Validation (Required)
+        const username = document.getElementById('username').value;
+        const usernameError = document.getElementById('usernameError');
+        if (!username) {
+            formIsValid = false;
+            usernameError.classList.remove('hidden'); // Show error message
+        } else {
+            usernameError.classList.add('hidden'); // Hide error message
+        }
+
+        // Email Validation (Valid email format)
+        const email = document.getElementById('email').value;
+        const emailError = document.getElementById('emailError');
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            formIsValid = false;
+            emailError.classList.remove('hidden'); // Show error message
+        } else {
+            emailError.classList.add('hidden'); // Hide error message
+        }
+
+        // Prevent form submission if any validation fails
+        if (!formIsValid) {
+            event.preventDefault();
+        }
+    });
+
+    // Password visibility toggle
+    const togglePassword = document.getElementById('togglePassword');
+    const passwordField = document.getElementById('password');
+
+    togglePassword.addEventListener('click', function () {
+        // Toggle password visibility
+        const isPasswordHidden = passwordField.type === 'password';
+        passwordField.type = isPasswordHidden ? 'text' : 'password';
+
+        // Toggle icon
+        togglePassword.classList.toggle('fa-eye');
+        togglePassword.classList.toggle('fa-eye-slash');
+    });
+</script>

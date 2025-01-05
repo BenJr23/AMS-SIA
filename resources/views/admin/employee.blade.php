@@ -4,7 +4,7 @@
         <section class="fixed ml-72 px-11 py-6 w-full top-20 left-0"> 
             <p class="text-sm">
                 <i class="fas fa-home text-gray-800"></i>
-                Dashboard / Employee
+                <a a href="/home">Dashboard</a> / Employee
             </p>
         </section>
 

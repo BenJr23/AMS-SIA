@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="apple-touch-icon" href="./images/logo.png" sizes="192x192">
+    <link rel="icon" href="./images/logo.png" sizes="192x192">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
@@ -11,71 +11,28 @@
     <title>Presenza</title>
     <style>
         body {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            font-family: Arial, sans-serif;
+            font-family: 'Poppins', sans-serif;
             background-color: #D2D4D7;
-        }
-        .clock {
-            text-align: center;
-            background: #fff;
-            padding: 20px 40px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
-        }
-        .clock h1 {
             margin: 0;
-            font-size: 3rem;
-            color: #333;
         }
-        .clock p {
-            margin: 5px 0 0;
-            font-size: 1.2rem;
-            color: #666;
-        }
-        .form-container {
-            width: 100%;
+        .clock, .form-container {
             max-width: 400px;
-            text-align: center;
-            background: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        .form-container label {
-            font-size: 1rem;
-            color: #333;
-            display: block;
-            margin-bottom: 10px;
-        }
-        .form-container button {
-            margin-top: 15px;
-            padding: 10px 20px;
-            font-size: 1rem;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            background-color: #007BFF;
-            color: white;
-        }
-        .form-container button:hover {
-            background-color: #0056b3;
+            width: 90%; /* Ensures responsiveness for smaller screens */
         }
     </style>
 </head>
-<body>
+<body class="flex flex-col items-center justify-center h-screen p-4">
+
     @auth
-        <div class="clock">
-            <h1 id="currentTime">00:00:00</h1>
-            <p id="currentDate">January 1, 1970</p>
+        <!-- Clock Display -->
+        <div class="clock bg-white p-6 rounded-lg shadow-lg text-center mb-6">
+            <h1 id="currentTime" class="text-4xl font-bold text-gray-800">00:00:00</h1>
+            <p id="currentDate" class="text-gray-600 text-lg">January 1, 1970</p>
         </div>
 
-        <div class="form-container">
+        <!-- Form Container -->
+        <div class="form-container bg-white p-6 rounded-lg shadow-lg">
+
             @php
                 $pendingAttendance = \App\Models\Attendance::where('user_id', auth()->id())
                                     ->whereNull('time_out')
@@ -83,29 +40,43 @@
             @endphp
 
             @if ($pendingAttendance)
-                {{-- Time Out Form --}}
-                <form id="timeOutForm" action="{{ route('attendance.update', $pendingAttendance->id) }}" method="POST">
+                <!-- Time Out Form -->
+                <form id="timeOutForm" action="{{ route('attendance.update', $pendingAttendance->id) }}" method="POST" class="space-y-4">
                     @csrf
                     @method('PUT')
-                    <label for="time_out">Time Out:</label>
+
                     <input type="hidden" id="time_out" name="time_out">
 
-                    <button type="button" id="timeOutButton">Time Out</button>
+                    <button type="button" id="timeOutButton"
+                            class="bg-red-600 text-white w-full py-3 rounded-lg shadow-md hover:bg-red-700 transition duration-200 focus:ring-4 focus:ring-red-300">
+                        Time Out
+                    </button>
                 </form>
             @else
-                {{-- Time In Form --}}
-                <form id="timeInForm" action="{{ route('attendance.store') }}" method="POST">
+                <!-- Time In Form -->
+                <form id="timeInForm" action="{{ route('attendance.store') }}" method="POST" class="space-y-6">
                     @csrf
-                    <label for="time_in">Time In:</label>
-                    <input type="hidden" id="time_in" name="time_in">
 
+                    <!-- Greeting Header -->
+                    <h1 class="text-xl font-semibold text-gray-800 text-center">
+                        Good day, <span class="text-blue-600">[Name]</span>! 🎉<br>
+                        You have successfully timed in.
+                    </h1>
+
+                    <!-- Hidden Inputs -->
+                    <input type="hidden" id="time_in" name="time_in">
                     <input type="hidden" name="user_id" value="{{ auth()->id() }}">
 
-                    <button type="button" id="timeInButton">Time In</button>
+                    <!-- Time In Button -->
+                    <button type="button" id="timeInButton"
+                            class="bg-blue-600 text-white w-full py-3 rounded-lg shadow-md hover:bg-blue-700 transition duration-200 focus:ring-4 focus:ring-blue-300">
+                        Time In
+                    </button>
                 </form>
             @endif
         </div>
 
+        <!-- JavaScript -->
         <script>
             // Function to update the clock display
             function updateClock() {

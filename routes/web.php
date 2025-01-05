@@ -14,6 +14,14 @@ Route::get('/reports', function () {
     return view('admin.reports');
 })->name('reports');
 
+Route::get('/profile', function () {
+    return view('admin.profile');
+})->name('profile');
+
+Route::get('/settings', function () {
+    return view('admin.settings');
+})->name('settings');
+
 Route::get('/login', function () {
     return view('auth.login');
 })->name('login');
