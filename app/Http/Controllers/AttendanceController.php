@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Attendance;
 
 class AttendanceController extends Controller
-{
+{   
+    
     public function index()
     {
         $attendances = Attendance::all();
@@ -17,20 +18,6 @@ class AttendanceController extends Controller
     {
         return view('attendance.create');
     }
-
-    public function store(Request $request)
-    {
-        $validated = $request->validate([
-            'time_in' => 'required|date_format:H:i',
-            'user_id' => 'required|exists:users,id',
-        ]);
-
-        Attendance::create($validated);
-
-        
-        return (new AuthenticatedSessionController)->destroy2($request);
-    }
-
     public function store2(Request $request)
     {
         // Step 1: Validate the incoming request
@@ -55,6 +42,19 @@ class AttendanceController extends Controller
 
         // Step 4: Redirect with a success message
         return redirect()->route('guestclockingform')->with('success', 'Attendance and dependent entity created successfully.');
+    }
+
+    public function datatime(Request $request)
+    {
+        $validated = $request->validate([
+            'time_in' => 'required|date_format:H:i',
+            'user_id' => 'required|exists:users,id',
+        ]);
+
+        Attendance::create($validated);
+
+        
+        return (new AuthenticatedSessionController)->destroy2($request);
     }
 
     public function show(Attendance $attendance)

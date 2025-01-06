@@ -54,7 +54,7 @@
                 </form>
             @else
                 <!-- Time In Form -->
-                <form id="timeInForm" action="{{ route('attendance.store') }}" method="POST" class="space-y-6">
+                <form id="timeInForm" action="{{ route('datatime') }}" method="POST" class="space-y-6">
                     @csrf
 
                     <!-- Greeting Header -->

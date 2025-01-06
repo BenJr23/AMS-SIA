@@ -58,12 +58,13 @@ Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name
 Route::post('/clocking', [AuthController::class, 'clocking'])->name('clocking');
 
 
-Route::post('/attendance', [AttendanceController::class, 'store'])->name('attendance.store');
+
 Route::put('/attendance/{attendance}', [AttendanceController::class, 'update'])->name('attendance.update');
+Route::post('/attendance/datatime', [AttendanceController::class, 'datatime'])->name('datatime');
+Route::post('/attendance/store2', [AttendanceController::class, 'store2'])->name('attendance.store2');
 
 
 Route::post('/register', [AuthController::class, 'register'])->name('register');
 
 //guest clocking should be different
 Route::post('/clockval', [GuestController::class, 'clockval'])->name('clockval');
-Route::post('/attendance', [AttendanceController::class, 'store2'])->name('attendance.store2');
