@@ -53,6 +53,7 @@ Route::get('/guestclockingform', function () {
     return view('guest.guestclockingform');
 })->name('guestclockingform');
 
+
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 Route::post('/clocking', [AuthController::class, 'clocking'])->name('clocking');

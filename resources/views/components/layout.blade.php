@@ -16,11 +16,11 @@
         <div class="container flex items-center justify-between h-full">
             <img src="./images/2.png" alt="library logo" class="h-32 w-auto -my-9">
             <ul class="flex space-x-4">
-                <li><a href="/login" id="login" class="sidebar-item flex items-center py-3 px-6 rounded-lg text-white hover:bg-[#22C55E] hover:text-white active:text-white">
+                <li><a href="/login" id="login" class="sidebar-item flex items-center py-3 px-6 rounded-lg text-white active bg-[#22C55E]">
                     <i class="fas fa-tachometer-alt mr-4"></i> Login</a></li>
-                <li><a href="/clocking" id="clocking" class="sidebar-item flex items-center py-3 px-6 rounded-lg text-white hover:bg-[#22C55E] hover:text-white active:text-white">
+                <li><a href="/clocking" id="clocking" class="sidebar-item flex items-center py-3 px-6 rounded-lg text-white hover:bg-[#22C55E] hover:text-white">
                     <i class="fas fa-user-tie mr-4"></i> Attendance</a></li>
-                <li><a href="/guest" id="guest" class="sidebar-item flex items-center py-3 px-6 rounded-lg text-white hover:bg-[#22C55E] hover:text-white active:text-white">
+                <li><a href="/guest" id="guest" class="sidebar-item flex items-center py-3 px-6 rounded-lg text-white hover:bg-[#22C55E] hover:text-white">
                     <i class="fas fa-calendar-check mr-4"></i> Guest</a></li>
             </ul>
         </div>
@@ -31,17 +31,34 @@
     </main>
 
     <script>
-        // Highlight the active sidebar item based on URL
-        document.addEventListener('DOMContentLoaded', () => {
-            const currentUrl = window.location.pathname;
-            const sidebarLinks = document.querySelectorAll('.sidebar-item');
+    document.addEventListener('DOMContentLoaded', () => {
+        const currentUrl = window.location.pathname;
+        const sidebarLinks = document.querySelectorAll('.sidebar-item');
 
-            sidebarLinks.forEach(link => {
-                if (link.getAttribute('href') === currentUrl) {
-                    link.classList.add('active', 'text-white', 'bg-[#22C55E]');
-                }
-            });
+        // Remove the 'bg-[#22C55E]' class from all items first
+        sidebarLinks.forEach(link => {
+            link.classList.remove('bg-[#22C55E]');
         });
-    </script>
+
+        // Highlight the link matching the current URL
+        let activeFound = false;
+        sidebarLinks.forEach(link => {
+            if (link.getAttribute('href') === currentUrl) {
+                link.classList.add('bg-[#22C55E]');
+                activeFound = true;
+            }
+        });
+
+        // Highlight the default link if no match is found
+        if (!activeFound) {
+            const defaultLink = document.querySelector('#login');
+            if (defaultLink) {
+                defaultLink.classList.add('bg-[#22C55E]');
+            }
+        }
+    });
+</script>
+
+
 </body>
 </html>

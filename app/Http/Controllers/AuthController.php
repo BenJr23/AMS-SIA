@@ -61,6 +61,7 @@ class AuthController extends Controller
         return back()->withErrors([
             'failed' => 'Account not found',
         ]);
+        
     }
     public function clocking(Request $request){
         $validatedData = $request->validate([

@@ -8,6 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+<<<<<<< HEAD
     <title>Presenza</title>
     <style>
         body {
@@ -121,5 +122,116 @@
             }
         });
     </script>
+=======
+    <title>Clocking</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="flex flex-col justify-center items-center min-h-screen bg-gray-100 font-sans">
+
+    <div class="clock bg-white p-6 rounded-lg shadow-md text-center mb-6">
+        <h1 id="currentTime" class="text-4xl font-bold text-gray-800">00:00:00</h1>
+        <p id="currentDate" class="text-lg text-gray-600">January 1, 1970</p>
+    </div>
+
+    <div class="form-container w-full max-w-md bg-white p-6 rounded-lg shadow-md text-center">
+        @php
+            $Data = session('userData'); // Retrieve the user data from the session
+
+            if (!$Data) {
+                echo "<script>window.location.href = '" . route('guestclocking') . "';</script>";
+                exit;
+            }
+
+            $dependentEntity = \App\Models\DependentEntity::where('username', $Data['username'])
+                                    ->where('email', $Data['email'])
+                                    ->first();
+
+            $pendingAttendance = $dependentEntity
+                ? \App\Models\Attendance::where('id', $dependentEntity->attendance_id)
+                                            ->whereNull('time_out')
+                                            ->first()
+                : null;
+        @endphp
+
+        @if ($pendingAttendance)
+            {{-- Time Out Form --}}
+            <form id="timeOutForm" action="{{ route('attendance.update', $pendingAttendance->id) }}" method="POST">
+                @csrf
+                @method('PUT')
+                <label for="time_out" class="block text-sm font-medium text-gray-700 mb-2">Time Out:</label>
+                <input type="hidden" id="time_out" name="time_out">
+
+                <button type="button" id="timeOutButton" class="w-full mt-4 px-4 py-2 text-white bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                    Time Out
+                </button>
+            </form>
+        @else
+            {{-- Time In Form --}}
+            <form id="timeInForm" action="{{ route('attendance.store2') }}" method="POST">
+                @csrf
+                <label for="time_in" class="block text-sm font-medium text-gray-700 mb-2">Time In:</label>
+                <input type="hidden" id="time_in" name="time_in">
+
+                <input type="hidden" name="username" value="{{ $Data['username'] }}">
+                <input type="hidden" name="email" value="{{ $Data['email'] }}">
+
+                <button type="button" id="timeInButton" class="w-full mt-4 px-4 py-2 text-white bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                    Time In
+                </button>
+            </form>
+        @endif
+    </div>
+
+    <script>
+        // Function to update the clock display
+        function updateClock() {
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+
+            const day = now.toLocaleString('default', { weekday: 'long' });
+            const date = now.toLocaleString('default', { month: 'long', day: 'numeric', year: 'numeric' });
+
+            document.getElementById('currentTime').textContent = `${hours}:${minutes}:${seconds}`;
+            document.getElementById('currentDate').textContent = `${day}, ${date}`;
+        }
+
+        // Update the clock every second
+        setInterval(updateClock, 1000);
+
+        // Initialize the clock display
+        updateClock();
+
+        // Handle Time In Button
+        document.getElementById('timeInButton')?.addEventListener('click', function () {
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const currentTime = `${hours}:${minutes}`;
+
+            // Set the time_in input value
+            document.getElementById('time_in').value = currentTime;
+
+            // Submit the form
+            document.getElementById('timeInForm').submit();
+        });
+
+        // Handle Time Out Button
+        document.getElementById('timeOutButton')?.addEventListener('click', function () {
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const currentTime = `${hours}:${minutes}`;
+
+            // Set the time_out input value
+            document.getElementById('time_out').value = currentTime;
+
+            // Submit the form
+            document.getElementById('timeOutForm').submit();
+        });
+    </script>
+
+>>>>>>> 93d2e1f (1)
 </body>
 </html>
