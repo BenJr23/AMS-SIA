@@ -98,7 +98,7 @@
 
         <!-- New Member Modal -->
         <div id="NewModal" class="fixed inset-0 bg-gray-900 bg-opacity-50 items-center justify-center hidden">
-            <div class="bg-white p-7 rounded-lg shadow-md w-[60%] ml-[20%] mt-20">
+            <div class="bg-white p-7 rounded-lg shadow-md w-[70%] ml-[20%] mt-20">
                 <h2 class="text-xl font-semibold mb-4">Add New Employee</h2>
 
                 <form id="newEmployeeForm" method="POST" action="{{ route('register') }}">
@@ -108,50 +108,43 @@
                         <div>
                             <label class="text-sm text-gray-600">First Name <span class="text-red-500">*</span></label>
                             <input type="text" name="first_name" placeholder="Althea Amor"
-                                class="w-full mt-1 px-3 py-2 border rounded bg-gray-100 text-gray-800" id="firstName"
-                                required>
+                                class="w-full mt-1 px-3 py-2 border rounded bg-gray-100 text-gray-800" id="firstName" required>
                             <p id="firstNameError" class="text-red-500 text-sm hidden">First Name is required.</p>
                         </div>
 
                         <div>
                             <label class="text-sm text-gray-600">Middle Name <span class="text-red-500">*</span></label>
                             <input type="text" name="middle_name" placeholder="J"
-                                class="w-full mt-1 px-3 py-2 border rounded bg-gray-100 text-gray-800" id="middleName"
-                                required>
+                                class="w-full mt-1 px-3 py-2 border rounded bg-gray-100 text-gray-800" id="middleName" required>
                             <p id="middleNameError" class="text-red-500 text-sm hidden">Middle Name is required.</p>
                         </div>
 
                         <div>
                             <label class="text-sm text-gray-600">Last Name <span class="text-red-500">*</span></label>
                             <input type="text" name="last_name" placeholder="Asis"
-                                class="w-full mt-1 px-3 py-2 border rounded bg-gray-100 text-gray-800" id="lastName"
-                                required>
+                                class="w-full mt-1 px-3 py-2 border rounded bg-gray-100 text-gray-800" id="lastName" required>
                             <p id="lastNameError" class="text-red-500 text-sm hidden">Last Name is required.</p>
                         </div>
                     </div>
 
                     <!-- Username, Email, and Password -->
-                    <div class="space-y-4 mb-4">
-        
-
+                    <div class="grid grid-cols-3 gap-4 mb-4">
                         <div>
                             <label for="email" class="block text-sm font-medium text-gray-700">Email <span
                                     class="text-red-500">*</span></label>
                             <input type="email" name="email" placeholder="Enter your email" id="email" required
                                 class="w-full mt-1 border border-[#011B33] rounded-md p-2 focus:ring-2 focus:ring-blue-500 focus:outline-none">
                             <p id="emailError" class="text-red-500 text-sm hidden">Email is required.</p>
-                            <p id="emailErrorInvalid" class="text-red-500 text-sm hidden error-message">Please enter a
-                                valid email address.</p>
+                            <p id="emailErrorInvalid" class="text-red-500 text-sm hidden error-message">Please enter a valid email address.</p>
                         </div>
 
                         <div>
                             <label class="text-sm text-gray-600">Password <span class="text-red-500">*</span></label>
                             <input type="password" name="password" placeholder="Enter a secure password"
-                                class="w-full mt-1 px-3 py-2 border rounded bg-gray-100 text-gray-800" id="password"
-                                required>
+                                class="w-full mt-1 px-3 py-2 border rounded bg-gray-100 text-gray-800" id="password" required>
                             <p id="passwordError" class="text-red-500 text-sm hidden">Password is required.</p>
                         </div>
-                        
+
                         <div>
                             <label class="text-sm text-gray-600">Confirm Password <span class="text-red-500">*</span></label>
                             <input type="password" name="password_confirmation" placeholder="Confirm your password"
@@ -167,17 +160,14 @@
                             <div>
                                 <label class="text-sm text-gray-600">Phone No. <span class="text-red-500">*</span></label>
                                 <input type="text" name="phone_no" placeholder="+639123456789"
-                                    class="w-full mt-1 px-3 py-2 border rounded bg-gray-100 text-gray-800" id="phoneNo"
-                                    required>
+                                    class="w-full mt-1 px-3 py-2 border rounded bg-gray-100 text-gray-800" id="phoneNo" required>
                                 <p id="phoneNoError" class="text-red-500 text-sm hidden">Phone No. is required.</p>
                             </div>
 
                             <div>
-                                <label class="text-sm text-gray-600">Date of Birth <span
-                                        class="text-red-500">*</span></label>
+                                <label class="text-sm text-gray-600">Date of Birth <span class="text-red-500">*</span></label>
                                 <input type="date" name="date_of_birth"
-                                    class="w-full mt-1 px-3 py-2 border rounded bg-gray-100 text-gray-800" id="dob"
-                                    required>
+                                    class="w-full mt-1 px-3 py-2 border rounded bg-gray-100 text-gray-800" id="dob" required>
                                 <p id="dobError" class="text-red-500 text-sm hidden">Date of Birth is required.</p>
                             </div>
 
@@ -191,15 +181,8 @@
 
                         <!-- Right Side -->
                         <div class="space-y-4">
-                            <div>
-                                <label class="text-sm font-semibold text-gray-700">Upload Photo</label>
-                                <input type="file" name="photo" id="uploadPhoto" accept="image/*"
-                                    class="w-full mt-1 px-3 py-2 border rounded">
-                            </div>
-
-                            <div>
-                                <label class="text-sm text-gray-600">Employee Type <span
-                                        class="text-red-500">*</span></label>
+                        <div>
+                                <label class="text-sm text-gray-600">Employee Type <span class="text-red-500">*</span></label>
                                 <select name="employee_type"
                                     class="w-full mt-1 px-3 py-2 border rounded bg-gray-100 text-gray-800"
                                     id="employeeType" required>
@@ -209,10 +192,18 @@
                                     <option value="technician">Technician</option>
                                     <option value="maintenance">Maintenance</option>
                                     <option value="library_admin">Library Admin</option>
+                                    <option value="Admin">Admin</option>
                                 </select>
-                                <p id="employeeTypeError" class="text-red-500 text-sm hidden">Employee Type is required.
-                                </p>
+                                <p id="employeeTypeError" class="text-red-500 text-sm hidden">Employee Type is required.</p>
                             </div>
+                            
+                            <div>
+                                <label class="text-sm font-semibold text-gray-700">Upload Photo</label>
+                                <input type="file" name="photo" id="uploadPhoto" accept="image/*"
+                                    class="w-full mt-1 px-3 py-2 border rounded">
+                            </div>
+
+                            
                         </div>
                     </div>
 
@@ -224,6 +215,7 @@
                             class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-[#011B33]">Save</button>
                     </div>
                 </form>
+
             </div>
         </div>
 

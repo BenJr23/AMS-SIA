@@ -16,12 +16,22 @@
         <div class="container flex items-center justify-between h-full">
             <img src="./images/2.png" alt="library logo" class="h-32 w-auto -my-9">
             <ul class="flex space-x-4">
-                <li><a href="/login" id="login" class="sidebar-item flex items-center py-3 px-6 rounded-lg text-white hover:bg-[#22C55E] hover:text-white active:text-white">
-                    <i class="fas fa-tachometer-alt mr-4"></i> Login</a></li>
-                <li><a href="/clocking" id="clocking" class="sidebar-item flex items-center py-3 px-6 rounded-lg text-white hover:bg-[#22C55E] hover:text-white active:text-white">
-                    <i class="fas fa-user-tie mr-4"></i> Attendance</a></li>
-                <li><a href="/guest" id="guest" class="sidebar-item flex items-center py-3 px-6 rounded-lg text-white hover:bg-[#22C55E] hover:text-white active:text-white">
-                    <i class="fas fa-calendar-check mr-4"></i> Guest</a></li>
+                <!-- Default active highlight on the Login menu item -->
+                <li>
+                    <a href="/login" id="login" class="sidebar-item flex items-center py-3 px-6 rounded-lg text-white bg-[#22C55E]">
+                        <i class="fas fa-tachometer-alt mr-4"></i> Login
+                    </a>
+                </li>
+                <li>
+                    <a href="/clocking" id="clocking" class="sidebar-item flex items-center py-3 px-6 rounded-lg text-white hover:bg-[#22C55E]">
+                        <i class="fas fa-user-tie mr-4"></i> Attendance
+                    </a>
+                </li>
+                <li>
+                    <a href="/guest" id="guest" class="sidebar-item flex items-center py-3 px-6 rounded-lg text-white hover:bg-[#22C55E]">
+                        <i class="fas fa-calendar-check mr-4"></i> Guest
+                    </a>
+                </li>
             </ul>
         </div>
     </nav>
@@ -31,16 +41,28 @@
     </main>
 
     <script>
-        // Highlight the active sidebar item based on URL
         document.addEventListener('DOMContentLoaded', () => {
             const currentUrl = window.location.pathname;
             const sidebarLinks = document.querySelectorAll('.sidebar-item');
 
+            let activeSet = false;
+
+            // Loop through links to find the matching URL
             sidebarLinks.forEach(link => {
                 if (link.getAttribute('href') === currentUrl) {
-                    link.classList.add('active', 'text-white', 'bg-[#22C55E]');
+                    link.classList.add('active', 'bg-[#22C55E]');
+                    link.classList.remove('hover:bg-[#22C55E]');
+                    activeSet = true;
+                } else {
+                    link.classList.remove('active', 'bg-[#22C55E]');
                 }
             });
+
+            // Ensure the "Login" menu is active if no other link matches
+            if (!activeSet) {
+                const defaultLink = document.querySelector('#login');
+                defaultLink.classList.add('active', 'bg-[#22C55E]');
+            }
         });
     </script>
 </body>
