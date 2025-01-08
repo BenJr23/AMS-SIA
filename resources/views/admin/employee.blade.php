@@ -192,7 +192,7 @@
                                     <option value="technician">Technician</option>
                                     <option value="maintenance">Maintenance</option>
                                     <option value="library_admin">Library Admin</option>
-                                    <option value="Admin">Admin</option>
+                                    <option value="admin">Admin</option>
                                 </select>
                                 <p id="employeeTypeError" class="text-red-500 text-sm hidden">Employee Type is required.</p>
                             </div>
