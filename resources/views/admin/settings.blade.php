@@ -1,3 +1,5 @@
+@vite('resources/js/settings.js')
+
 <x-admin>
     @auth
         <!-- Direction of Tabs -->

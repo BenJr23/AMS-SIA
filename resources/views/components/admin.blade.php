@@ -11,7 +11,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!--for the graph-->
 
     <title>Presenza</title>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @vite(['resources/css/app.css', 'resources/js/app.js','resources/js/component-admin.js'])
 </head>
 
 <body class="bg-gray-100 overflow-x-hidden">
@@ -112,77 +112,6 @@
         <main class="w-full lg:w-4/5 mt-24 lg:mt-0">{{$slot}}</main>
     </div>
 
-    <script>
-        // Get the current path
-        const currentPath = window.location.pathname;
-        
-        // Select all sidebar links
-        const sidebarLinks = document.querySelectorAll('.sidebar-item');
-        
-        // Remove highlight from all sidebar links
-        sidebarLinks.forEach(link => {
-            link.classList.remove('bg-[#13684C]');  // Remove the highlight class from all links
-        });
-
-        // Set default active state for '/dashboard' or root '/'
-        if (currentPath === '/dashboard' || currentPath === '/') {
-            document.getElementById('dashboard-link').classList.add('bg-[#13684C]'); // Highlight the Dashboard link by default
-        } else {
-            // Highlight the active link based on the current path
-            sidebarLinks.forEach(link => {
-                if (link.getAttribute('href') === currentPath) {
-                    link.classList.add('bg-[#13684C]');  // Add highlight to the active link
-                }
-            });
-        }
-
-        // Add event listener to update the active link on click
-        sidebarLinks.forEach(link => {
-            link.addEventListener('click', function() {
-                sidebarLinks.forEach(link => link.classList.remove('bg-[#13684C]')); // Remove highlight from all
-                this.classList.add('bg-[#13684C]');  // Add highlight to clicked link
-            });
-        });
-
-        // Toggle the sidebar visibility when hamburger button is clicked
-        document.getElementById('hamburger-btn').addEventListener('click', function() {
-            const sidebar = document.querySelector('.sidebar');
-            sidebar.classList.toggle('-translate-x-full');
-        });
-
-
-        //for the logout modal
-        // Function to open a modal by ID
-        function openModal(modalId) {
-        const modal = document.getElementById(modalId);
-        if (modal) {
-                modal.classList.remove('hidden'); // Remove the hidden class
-                modal.classList.add('flex'); // Add the flex class to display the modal
-        }
-        }
-
-        // Function to close a modal by ID
-        function closeModal(modalId) {
-        const modal = document.getElementById(modalId);
-        if (modal) {
-                modal.classList.add('hidden'); // Add the hidden class to hide the modal
-                modal.classList.remove('flex'); // Remove the flex class
-        }
-        }
-
-         // Toggle notification dropdown
-         const notificationIcon = document.getElementById('notificationIcon');
-        const notificationBox = document.getElementById('notificationBox');
-        notificationIcon.addEventListener('click', () => {
-            notificationBox.classList.toggle('hidden');
-        });
-
-        const mobileNotificationIcon = document.getElementById('mobileNotificationIcon');
-        const mobileNotificationBox = document.getElementById('mobileNotificationBox');
-        mobileNotificationIcon.addEventListener('click', () => {
-            mobileNotificationBox.classList.toggle('hidden');
-        });
-    </script>
 
 </body>
 </html>

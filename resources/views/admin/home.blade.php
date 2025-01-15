@@ -1,3 +1,5 @@
+@vite('resources/js/home.js')
+
 <x-admin>
     <style>
         canvas {
@@ -47,7 +49,7 @@
     @endauth
 </x-admin>
 
-<script>
+{{-- <script>
   // Present Chart
   const presentCtx = document.getElementById('presentChart').getContext('2d');
   new Chart(presentCtx, {
@@ -108,4 +110,4 @@
       maintainAspectRatio: false,
     }
   });
-</script>
+</script> --}}
