@@ -1,4 +1,6 @@
+
 <x-layout>
+    @vite('resources/js/clocking.js')
     <div class="form-container">
         <div class="flex justify-center items-center mb-5">
             <img src="./images/logo.png" alt="library logo" class="h-32 w-auto -my-9">
@@ -24,7 +26,7 @@
     </div> 
 </x-layout>
 
-<script>
+{{-- <script>
     // Email Validation
     document.getElementById('clockingForm').addEventListener('submit', function(event) {
         const email = document.getElementById('email').value;
@@ -52,4 +54,4 @@
         togglePassword.classList.toggle('fa-eye');
         togglePassword.classList.toggle('fa-eye-slash');
     });
-</script>
+</script> --}}

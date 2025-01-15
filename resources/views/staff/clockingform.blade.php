@@ -9,6 +9,8 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Presenza</title>
+    @vite( 'resources/js/clockingform.js')
+
     <style>
         body {
             font-family: 'Poppins', sans-serif;
@@ -76,7 +78,7 @@
             @endif
         </div>
 
-        <!-- JavaScript -->
+        {{-- <!-- JavaScript -->
         <script>
             // Function to update the clock display
             function updateClock() {
@@ -125,7 +127,7 @@
                 // Submit the form
                 document.getElementById('timeOutForm').submit();
             });
-        </script>
+        </script> --}}
     @endauth
 </body>
 </html>

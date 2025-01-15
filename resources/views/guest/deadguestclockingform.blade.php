@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Clocking</title>
+    @vite('resources/js/deadguestclocking.js')
+
     <style>
         body {
             display: flex;
@@ -115,7 +117,7 @@
             @endif
         </div>
 
-        <script>
+        {{-- <script>
             // Function to update the clock display
             function updateClock() {
                 const now = new Date();
@@ -163,6 +165,6 @@
                 // Submit the form
                 document.getElementById('timeOutForm').submit();
             });
-        </script>
+        </script> --}}
 </body>
 </html>

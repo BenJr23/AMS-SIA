@@ -1,3 +1,6 @@
+@vite('resources/js/employee.js')
+
+
 <x-admin>
     @auth
         <!-- Direction of Tabs -->
@@ -420,7 +423,7 @@
     @endauth
 </x-admin>
 
-<script>
+{{-- <script>
     // Function to open a modal by ID
     function openModal(modalId) {
         const modal = document.getElementById(modalId);
@@ -520,4 +523,4 @@
 
         return isValid;
     }
-</script>
+</script> --}}

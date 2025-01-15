@@ -1,4 +1,5 @@
 <x-layout>
+    @vite('resources/js/guest.js')
     <div class="form-container">
         <div class="flex justify-center items-center mb-5">
             <img src="./images/logo.png" alt="library logo" class="h-32 w-auto -my-9">
@@ -24,7 +25,7 @@
     </div> 
 </x-layout>
 
-<script>
+{{-- <script>
     // Username Validation
     document.getElementById('clockingForm').addEventListener('submit', function(event) {
         let formIsValid = true;
@@ -55,4 +56,4 @@
             event.preventDefault();
         }
     });
-</script>
+</script> --}}

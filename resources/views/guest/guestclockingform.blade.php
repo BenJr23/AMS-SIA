@@ -9,6 +9,8 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Presenza</title>
+    @vite('resources/js/guestclockingform.js')
+
     <style>
         body {
             font-family: 'Poppins', sans-serif;
@@ -75,7 +77,7 @@
         @endif
     </div>
 
-    <!-- JavaScript -->
+    {{-- <!-- JavaScript -->
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             console.log('DOM Content Loaded'); // Debugging confirmation
@@ -120,6 +122,6 @@
                 });
             }
         });
-    </script>
+    </script> --}}
 </body>
 </html>

@@ -1,4 +1,5 @@
 <x-layout>
+    @vite('resources/js/guest-clocking.js')
     <div class="form-container">
         <h1>Clocking</h1>
         <form action="{{ route('clockval') }}" method="POST">

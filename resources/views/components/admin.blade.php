@@ -11,7 +11,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!--for the graph-->
 
     <title>Presenza</title>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @vite(['resources/css/app.css', 'resources/js/app.js','resources/js/component-admin.js'])
 </head>
 
 <body class="bg-gray-100 overflow-x-hidden">
@@ -112,7 +112,7 @@
         <main class="w-full lg:w-4/5 mt-24 lg:mt-0">{{$slot}}</main>
     </div>
 
-    <script>
+    {{-- <script>
         // Get the current path
         const currentPath = window.location.pathname;
         
@@ -182,7 +182,7 @@
         mobileNotificationIcon.addEventListener('click', () => {
             mobileNotificationBox.classList.toggle('hidden');
         });
-    </script>
+    </script> --}}
 
 </body>
 </html>

@@ -1,3 +1,5 @@
+@vite('resources/js/reports.js')
+
 <x-admin>
     @auth
         <!-- Direction of Tabs -->
@@ -75,7 +77,7 @@
 
 </x-admin>
 
-<script>
+{{-- <script>
     const dropdownButton = document.getElementById('dropdown-button');
     const dropdownMenu = document.getElementById('dropdown-menu');
 
@@ -89,7 +91,7 @@
             dropdownMenu.classList.add('hidden');
         }
     });
-</script>
+</script> --}}
 
 
 
