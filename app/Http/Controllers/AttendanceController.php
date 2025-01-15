@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use Illuminate\Http\Request;
 use App\Models\Attendance;
+use Illuminate\Support\Facades\Http;
+
 
 class AttendanceController extends Controller
 {   
@@ -53,6 +55,30 @@ class AttendanceController extends Controller
 
         Attendance::create($validated);
 
+        $user = auth()->user(); // Retrieve the authenticated user
+
+        if ($user) {
+            $email = $user->email; // Get the authenticated user's email
+
+            // Use the full URL of the external API
+            $apiUrl = 'http://127.0.0.2:8000/api/activate-employee';
+
+            // Call the activate API using the email
+            $response = Http::post($apiUrl, [
+                'email' => $email
+            ]);
+
+            // Optionally handle the API response if needed
+            if ($response->successful()) {
+                // Activation succeeded
+            } else {
+                // Log or handle errors
+                \Log::error('Activation API failed', [
+                    'status' => $response->status(),
+                    'body' => $response->body()
+                ]);
+            }
+        }
         
         return (new AuthenticatedSessionController)->destroy2($request);
     }
