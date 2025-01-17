@@ -61,7 +61,7 @@ class AttendanceController extends Controller
             $email = $user->email; // Get the authenticated user's email
 
             // Use the full URL of the external API
-            $apiUrl = 'http://127.0.0.2:8000/api/activate-employee';
+            $apiUrl = 'http://127.0.0.2:8000/api/activate-user';
 
             // Call the activate API using the email
             $response = Http::post($apiUrl, [
@@ -100,6 +100,30 @@ class AttendanceController extends Controller
         ]);
     
         $attendance->update($validated);
+        $user = auth()->user(); // Retrieve the authenticated user
+
+        if ($user) {
+            $email = $user->email; // Get the authenticated user's email
+
+            // Use the full URL of the external API
+            $apiUrl = 'http://127.0.0.2:8000/api/deactivate-user';
+
+            // Call the activate API using the email
+            $response = Http::post($apiUrl, [
+                'email' => $email
+            ]);
+
+            // Optionally handle the API response if needed
+            if ($response->successful()) {
+                // Activation succeeded
+            } else {
+                // Log or handle errors
+                \Log::error('Activation API failed', [
+                    'status' => $response->status(),
+                    'body' => $response->body()
+                ]);
+            }
+        }
     
         return (new AuthenticatedSessionController)->destroy2($request);
 

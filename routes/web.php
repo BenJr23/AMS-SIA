@@ -59,8 +59,8 @@ Route::post('/clocking', [AuthController::class, 'clocking'])->name('clocking');
 
 
 
-Route::put('/attendance/{attendance}', [AttendanceController::class, 'update'])->name('attendance.update');
-Route::post('/attendance/datatime', [AttendanceController::class, 'datatime'])->name('datatime');
+Route::put('/attendance/{attendance}', [AttendanceController::class, 'update'])->name('attendance.update')->middleware('auth');
+Route::post('/attendance/datatime', [AttendanceController::class, 'datatime'])->name('datatime')->middleware('auth');
 Route::post('/attendance/store2', [AttendanceController::class, 'store2'])->name('attendance.store2');
 
 
