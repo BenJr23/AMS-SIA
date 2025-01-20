@@ -61,7 +61,7 @@ class AttendanceController extends Controller
             $email = $user->email; // Get the authenticated user's email
 
             // Use the full URL of the external API
-            $apiUrl = 'http://127.0.0.2:8000/api/activate-user';
+            $apiUrl = 'https://lms-admin-production-3b1d.up.railway.app/api/activate-user';
 
             // Call the activate API using the email
             $response = Http::post($apiUrl, [
@@ -106,7 +106,7 @@ class AttendanceController extends Controller
             $email = $user->email; // Get the authenticated user's email
 
             // Use the full URL of the external API
-            $apiUrl = 'http://127.0.0.2:8000/api/deactivate-user';
+            $apiUrl = 'https://lms-admin-production-3b1d.up.railway.app/api/deactivate-user';
 
             // Call the activate API using the email
             $response = Http::post($apiUrl, [
