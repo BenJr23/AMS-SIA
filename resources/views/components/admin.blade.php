@@ -104,7 +104,6 @@
                     <div class="p-4 text-center text-gray-500">No more notifications</div>
                     </div>
                 </div>
-                <a a href="/settings"><i class="fas fa-cog text-gray-600"></i></a>
             </div>
         </header>
 

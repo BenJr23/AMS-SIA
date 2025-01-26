@@ -68,16 +68,18 @@
                                     <td class="py-3 px-4 text-green-600">Active</td>
                                     <td class="py-3 px-4 flex justify-center items-center space-x-5">
                                         <!-- View Icon -->
-                                        <button onclick="openModal('ViewModal')" class="text-blue-500 hover:text-blue-700">
-                                            <i class="fa fa-eye w-5 h-5"></i>
+                                        <button onclick="openModal('ViewModal')" class="text-blue-500 hover:text-blue-700 focus:outline-none">
+                                            <i class="fa fa-eye text-lg"></i>
                                         </button>
+
                                         <!-- Edit Icon -->
-                                        <button onclick="openModal('EditModal')" class="text-gray-600 hover:text-gray-800">
-                                            <i class="fa fa-pencil-alt w-5 h-5"></i>
+                                        <button onclick="openModal('EditModal')" class="text-gray-600 hover:text-gray-800 focus:outline-none">
+                                            <i class="fa fa-pencil text-lg"></i>
                                         </button>
+
                                         <!-- Delete Icon -->
-                                        <button onclick="openModal('DeleteModal')" class="text-red-600 hover:text-gray-800">
-                                            <i class="fa fa-trash-alt w-5 h-5"></i>
+                                        <button onclick="openModal('DeleteModal')" class="text-red-600 hover:text-red-800 focus:outline-none">
+                                            <i class="fa fa-trash text-lg"></i>
                                         </button>
                                     </td>
                                 </tr>
@@ -99,12 +101,17 @@
         </div>
         @endif
 
-        <!-- New Member Modal -->
-        <div id="NewModal" class="fixed inset-0 bg-gray-900 bg-opacity-50 items-center justify-center hidden">
-            <div class="bg-white p-7 rounded-lg shadow-md w-[70%] ml-[20%] mt-20">
-                <h2 class="text-xl font-semibold mb-4">Add New Employee</h2>
 
-                <form id="newEmployeeForm" method="POST" action="{{ route('register') }}">
+        <!-- New Member Modal -->
+        <div id="NewModal" class="fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center hidden" aria-hidden="true">
+            <div class="bg-white p-7 rounded-lg shadow-md w-[90%] max-w-lg">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-xl font-semibold">Add New Employee</h2>
+                    <button onclick="closeModal('NewModal')" class="text-gray-600 hover:text-gray-800 focus:outline-none">
+                        <i class="fa fa-times text-xl"></i>
+                    </button>
+                </div>
+                <form id="newEmployeeForm" method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
                     @csrf
                     <!-- Name Section (Inline: First Name, Middle Name, Last Name) -->
                     <div class="grid grid-cols-3 gap-4 mb-4">
@@ -114,14 +121,12 @@
                                 class="w-full mt-1 px-3 py-2 border rounded bg-gray-100 text-gray-800" id="firstName" required>
                             <p id="firstNameError" class="text-red-500 text-sm hidden">First Name is required.</p>
                         </div>
-
                         <div>
                             <label class="text-sm text-gray-600">Middle Name <span class="text-red-500">*</span></label>
                             <input type="text" name="middle_name" placeholder="J"
                                 class="w-full mt-1 px-3 py-2 border rounded bg-gray-100 text-gray-800" id="middleName" required>
                             <p id="middleNameError" class="text-red-500 text-sm hidden">Middle Name is required.</p>
                         </div>
-
                         <div>
                             <label class="text-sm text-gray-600">Last Name <span class="text-red-500">*</span></label>
                             <input type="text" name="last_name" placeholder="Asis"
@@ -129,7 +134,6 @@
                             <p id="lastNameError" class="text-red-500 text-sm hidden">Last Name is required.</p>
                         </div>
                     </div>
-
                     <!-- Username, Email, and Password -->
                     <div class="grid grid-cols-3 gap-4 mb-4">
                         <div>
@@ -140,14 +144,12 @@
                             <p id="emailError" class="text-red-500 text-sm hidden">Email is required.</p>
                             <p id="emailErrorInvalid" class="text-red-500 text-sm hidden error-message">Please enter a valid email address.</p>
                         </div>
-
                         <div>
                             <label class="text-sm text-gray-600">Password <span class="text-red-500">*</span></label>
                             <input type="password" name="password" placeholder="Enter a secure password"
                                 class="w-full mt-1 px-3 py-2 border rounded bg-gray-100 text-gray-800" id="password" required>
                             <p id="passwordError" class="text-red-500 text-sm hidden">Password is required.</p>
                         </div>
-
                         <div>
                             <label class="text-sm text-gray-600">Confirm Password <span class="text-red-500">*</span></label>
                             <input type="password" name="password_confirmation" placeholder="Confirm your password"
@@ -155,7 +157,6 @@
                             <p id="confirmPasswordError" class="text-red-500 text-sm hidden">Confirm Password is required.</p>
                         </div>
                     </div>
-
                     <!-- Phone No., Date of Birth, Address, and Photo Upload Section -->
                     <div class="grid grid-cols-2 gap-4 mb-4">
                         <!-- Left Side -->
@@ -166,14 +167,12 @@
                                     class="w-full mt-1 px-3 py-2 border rounded bg-gray-100 text-gray-800" id="phoneNo" required>
                                 <p id="phoneNoError" class="text-red-500 text-sm hidden">Phone No. is required.</p>
                             </div>
-
                             <div>
                                 <label class="text-sm text-gray-600">Date of Birth <span class="text-red-500">*</span></label>
                                 <input type="date" name="date_of_birth"
                                     class="w-full mt-1 px-3 py-2 border rounded bg-gray-100 text-gray-800" id="dob" required>
                                 <p id="dobError" class="text-red-500 text-sm hidden">Date of Birth is required.</p>
                             </div>
-
                             <div>
                                 <label class="text-sm text-gray-600">Address <span class="text-red-500">*</span></label>
                                 <textarea name="address" placeholder="Enter address here"
@@ -181,10 +180,9 @@
                                 <p id="addressError" class="text-red-500 text-sm hidden">Address is required.</p>
                             </div>
                         </div>
-
                         <!-- Right Side -->
                         <div class="space-y-4">
-                        <div>
+                            <div>
                                 <label class="text-sm text-gray-600">Employee Type <span class="text-red-500">*</span></label>
                                 <select name="employee_type"
                                     class="w-full mt-1 px-3 py-2 border rounded bg-gray-100 text-gray-800"
@@ -199,17 +197,13 @@
                                 </select>
                                 <p id="employeeTypeError" class="text-red-500 text-sm hidden">Employee Type is required.</p>
                             </div>
-                            
                             <div>
                                 <label class="text-sm font-semibold text-gray-700">Upload Photo</label>
                                 <input type="file" name="photo" id="uploadPhoto" accept="image/*"
                                     class="w-full mt-1 px-3 py-2 border rounded">
                             </div>
-
-                            
                         </div>
                     </div>
-
                     <!-- Modal Footer -->
                     <div class="flex justify-end">
                         <button type="button" onclick="closeModal('NewModal')"
@@ -218,7 +212,6 @@
                             class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-[#011B33]">Save</button>
                     </div>
                 </form>
-
             </div>
         </div>
 
@@ -227,15 +220,15 @@
 
 
 
-
-        <!-- View Modal -->
-        <div id="ViewModal" class="fixed inset-0 bg-gray-900 bg-opacity-50 items-center justify-center hidden">
-            <div class="bg-white p-7 rounded-lg shadow-md w-[60%] ml-[20%] mt-20">
-                <!-- Modal Header with Close Button -->
+            <!-- View Modal -->
+        <div id="ViewModal" class="fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center hidden" aria-hidden="true">
+            <div class="bg-white p-7 rounded-lg shadow-md w-[90%] max-w-lg">
+                <!-- Modal Header -->
                 <div class="flex justify-between items-center mb-4">
-                    <h2 class="text-xl font-semibold">View Employee Details</h2>
-                    <button onclick="closeModal('ViewModal')"
-                        class="text-gray-600 hover:text-gray-900 text-2xl">&times;</button>
+                    <h2 class="text-xl font-semibold">View Details</h2>
+                    <button onclick="closeModal('ViewModal')" class="text-gray-600 hover:text-gray-800 focus:outline-none">
+                        <i class="fa fa-times text-xl"></i>
+                    </button>
                 </div>
 
                 <!-- Employee Details and Photo Section -->
@@ -265,7 +258,7 @@
                             </div>
                             <div class="flex justify-between">
                                 <dt class="text-sm font-medium text-gray-500">Address</dt>
-                                <dd class="text-sm text-gray-900">210 sto. nino st. brgy holy spirit</dd>
+                                <dd class="text-sm text-gray-900">210 Sto. Niño St., Brgy Holy Spirit</dd>
                             </div>
                             <div class="flex justify-between">
                                 <dt class="text-sm font-medium text-gray-500">Email</dt>
@@ -285,7 +278,7 @@
                     <!-- Right Side: Photo Upload Section -->
                     <div class="w-1/2 pl-4">
                         <div class="w-48 h-48 flex items-center justify-center mx-auto mb-4">
-                            <img src="./images/photo.png" alt="photo" class="w-full h-full object-cover">
+                            <img src="./images/photo.png" alt="photo" class="w-full h-full object-cover rounded-md">
                         </div>
                     </div>
                 </div>
@@ -295,127 +288,150 @@
 
 
 
-        <!-- Edit Modal -->
-        <div id="EditModal" class="fixed inset-0 bg-gray-900 bg-opacity-50 items-center justify-center hidden">
-            <div class="bg-white p-7 rounded-lg shadow-md w-[60%] ml-[20%] mt-20">
-                <h2 class="text-xl font-semibold mb-4">Edit Employee Info</h2>
 
+      <!-- Edit Modal --> 
+        <div id="EditModal" class="fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center hidden" aria-hidden="true">
+            <div class="bg-white p-7 rounded-lg shadow-md w-[90%] max-w-lg">
+                <!-- Modal Header -->
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-xl font-semibold text-gray-800">Edit Details</h2>
+                    <button onclick="closeModal('EditModal')" class="text-gray-600 hover:text-gray-800 focus:outline-none">
+                        <i class="fa fa-times text-xl"></i>
+                    </button>
+                </div>
+
+                <!-- Edit Form -->
                 <form id="EditEmployeeForm" onsubmit="return validateForm()">
                     <!-- Name Section (Inline: First Name, Middle Name, Last Name) -->
                     <div class="grid grid-cols-3 gap-4 mb-4">
                         <div>
                             <label class="text-sm text-gray-600">First Name <span class="text-red-500">*</span></label>
-                            <input type="text" placeholder="Althea Amor"
-                                class="w-full mt-1 px-3 py-2 border rounded bg-gray-100 text-gray-800" id="firstName"
+                            <input type="text" placeholder="Althea Amor" id="firstName"
+                                class="w-full mt-1 px-3 py-2 border rounded bg-gray-100 text-gray-800 focus:ring-2 focus:ring-blue-500"
                                 required>
                             <p id="firstNameError" class="text-red-500 text-sm hidden">First Name is required.</p>
                         </div>
-
                         <div>
                             <label class="text-sm text-gray-600">Middle Name <span class="text-red-500">*</span></label>
-                            <input type="text" placeholder="J"
-                                class="w-full mt-1 px-3 py-2 border rounded bg-gray-100 text-gray-800" id="middleName"
+                            <input type="text" placeholder="J" id="middleName"
+                                class="w-full mt-1 px-3 py-2 border rounded bg-gray-100 text-gray-800 focus:ring-2 focus:ring-blue-500"
                                 required>
                             <p id="middleNameError" class="text-red-500 text-sm hidden">Middle Name is required.</p>
                         </div>
-
                         <div>
                             <label class="text-sm text-gray-600">Last Name <span class="text-red-500">*</span></label>
-                            <input type="text" placeholder="Asis"
-                                class="w-full mt-1 px-3 py-2 border rounded bg-gray-100 text-gray-800" id="lastName"
+                            <input type="text" placeholder="Asis" id="lastName"
+                                class="w-full mt-1 px-3 py-2 border rounded bg-gray-100 text-gray-800 focus:ring-2 focus:ring-blue-500"
                                 required>
                             <p id="lastNameError" class="text-red-500 text-sm hidden">Last Name is required.</p>
                         </div>
                     </div>
 
-                    <!-- Phone No., Date of Birth, Email, and Address Section (Left Side) -->
+                    <!-- Contact Details Section -->
                     <div class="grid grid-cols-2 gap-4 mb-4">
-                        <!-- Left Side -->
+                        <!-- Left Column -->
                         <div class="space-y-4">
                             <div>
                                 <label class="text-sm text-gray-600">Phone No. <span class="text-red-500">*</span></label>
-                                <input type="text" placeholder="+639123456789"
-                                    class="w-full mt-1 px-3 py-2 border rounded bg-gray-100 text-gray-800" id="phoneNo"
+                                <input type="text" placeholder="+639123456789" id="phoneNo"
+                                    class="w-full mt-1 px-3 py-2 border rounded bg-gray-100 text-gray-800 focus:ring-2 focus:ring-blue-500"
                                     required>
                                 <p id="phoneNoError" class="text-red-500 text-sm hidden">Phone No. is required.</p>
                             </div>
-
                             <div>
-                                <label class="text-sm text-gray-600">Date of Birth <span
-                                        class="text-red-500">*</span></label>
-                                <input type="date"
-                                    class="w-full mt-1 px-3 py-2 border rounded bg-gray-100 text-gray-800" id="dob"
+                                <label class="text-sm text-gray-600">Date of Birth <span class="text-red-500">*</span></label>
+                                <input type="date" id="dob"
+                                    class="w-full mt-1 px-3 py-2 border rounded bg-gray-100 text-gray-800 focus:ring-2 focus:ring-blue-500"
                                     required>
                                 <p id="dobError" class="text-red-500 text-sm hidden">Date of Birth is required.</p>
                             </div>
-
                             <div>
-                                <label for="email" class="block text-sm font-medium text-gray-700">Email <span
-                                        class="text-red-500">*</span></label>
-                                <input type="email" placeholder="Enter your email" id="email" name="email"
-                                    required
-                                    class="w-full mt-1 border border-[#011B33] rounded-md p-2 focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                                <label class="text-sm text-gray-600">Email <span class="text-red-500">*</span></label>
+                                <input type="email" placeholder="Enter your email" id="email"
+                                    class="w-full mt-1 px-3 py-2 border rounded bg-gray-100 text-gray-800 focus:ring-2 focus:ring-blue-500"
+                                    required>
                                 <p id="emailError" class="text-red-500 text-sm hidden">Email is required.</p>
-                                <p id="emailErrorInvalid" class="text-red-500 text-sm hidden error-message">Please enter a
-                                    valid email address.</p>
+                                <p id="emailErrorInvalid" class="text-red-500 text-sm hidden">Please enter a valid email address.</p>
                             </div>
-
                             <div>
                                 <label class="text-sm text-gray-600">Address <span class="text-red-500">*</span></label>
-                                <textarea placeholder="Enter address here" class="w-full mt-1 px-3 py-2 border rounded bg-gray-100 text-gray-800"
-                                    rows="3" id="address" required></textarea>
+                                <textarea id="address" placeholder="Enter address here"
+                                    class="w-full mt-1 px-3 py-2 border rounded bg-gray-100 text-gray-800 focus:ring-2 focus:ring-blue-500"
+                                    rows="3" required></textarea>
                                 <p id="addressError" class="text-red-500 text-sm hidden">Address is required.</p>
                             </div>
                         </div>
 
-                        <!-- Right Side (Photo Upload Section) -->
+                        <!-- Right Column (Photo Upload Section) -->
                         <div class="space-y-4">
-                            <div>
-                                <label class="text-sm font-semibold text-gray-700">Upload Photo</label>
-                                <!-- Photo Upload Input (Larger Image) -->
-                                <div class="w-48 h-48 flex items-center justify-center mx-auto mb-4">
-                                    <img src="./images/photo.png" alt="photo" class="w-full h-full object-cover">
-                                </div>
-                                <!-- File Upload Input (Block Format) -->
-                                <input type="file" id="uploadPhoto" name="photo" accept="image/*"
-                                    class="w-full mt-1 px-3 py-2 border rounded">
+                            <label class="text-sm font-semibold text-gray-700">Upload Photo</label>
+                            <div class="w-48 h-48 flex items-center justify-center mx-auto mb-4 border border-gray-200 rounded">
+                                <img src="./images/photo.png" alt="Uploaded Photo Preview"
+                                    class="w-full h-full object-cover rounded">
                             </div>
+                            <input type="file" id="uploadPhoto" name="photo" accept="image/*"
+                                class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-blue-500">
                         </div>
                     </div>
+
+                    <!-- Modal Footer -->
+                    <div class="flex justify-end">
+                        <button type="button" onclick="closeModal('EditModal')"
+                            class="mr-2 px-4 py-2 bg-gray-300 text-gray-700 rounded hover:bg-gray-200 focus:outline-none">
+                            Cancel
+                        </button>
+                        <button type="submit"
+                            class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none">
+                            Save
+                        </button>
+                    </div>
                 </form>
-                <!-- Modal Footer -->
-                <div class="flex justify-end">
-                    <button type="button" onclick="closeModal('EditModal')"
-                        class="mr-2 px-4 py-2 bg-gray-300 text-gray-700 rounded hover:bg-gray-200">Cancel</button>
-                    <button type="submit"
-                        class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-[#011B33]">Save</button>
-                </div>
             </div>
         </div>
 
 
 
-        <!-- Delete Modal -->
-        <div id="DeleteModal" class="fixed inset-0 bg-gray-900 bg-opacity-50 items-center justify-center hidden">
-            <div class="bg-white p-6 rounded-lg shadow-md w-[60%] max-w-sm">
-                <h1 class="text-2xl font-semibold text-center mb-6">Are you sure you want to DELETE this employee?</h1>
+       <!-- Delete Modal -->
+        <div id="DeleteModal" class="fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center hidden" aria-hidden="true">
+            <div class="bg-white p-6 rounded-lg shadow-md w-[90%] max-w-md">
+                <!-- Modal Header -->
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-xl font-semibold text-red-600">Confirm Delete</h2>
+                    <button onclick="closeModal('DeleteModal')" class="text-gray-600 hover:text-gray-800 focus:outline-none">
+                        <i class="fa fa-times text-xl"></i>
+                    </button>
+                </div>
+
+                <!-- Modal Body -->
+                <div class="text-center">
+                    <h1 class="text-2xl font-semibold text-gray-800 mb-6">Are you sure you want to DELETE this employee?</h1>
+                </div>
+
+                <!-- Modal Footer -->
                 <div class="flex justify-end">
+                    <!-- Cancel Button -->
                     <button type="button" onclick="closeModal('DeleteModal')"
-                        class="mr-2 px-4 py-2 bg-gray-300 text-gray-700 rounded hover:bg-gray-200">Cancel</button>
+                        class="mr-3 px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 focus:outline-none">
+                        Cancel
+                    </button>
 
                     <!-- Delete Button with Icon -->
                     <button type="submit"
-                        class="flex items-center px-4 py-2 bg-red-500 text-white rounded hover:bg-[#011B33]">
+                        class="flex items-center px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 focus:outline-none">
                         <i class="fas fa-trash-alt mr-2"></i> Delete
                     </button>
                 </div>
             </div>
         </div>
 
+
+
+
+
     @endauth
 </x-admin>
 
-{{-- <script>
+<!-- {{-- <script>
     // Function to open a modal by ID
     function openModal(modalId) {
         const modal = document.getElementById(modalId);
@@ -515,4 +531,4 @@
 
         return isValid;
     }
-</script> --}}
+</script> --}} -->

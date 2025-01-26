@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (modal) {
             modal.classList.remove('hidden'); // Remove the hidden class
             modal.classList.add('flex'); // Add the flex class to display the modal
+            modal.setAttribute('aria-hidden', 'false'); // Accessibility: Modal is visible
         } else {
             console.error(`Modal with ID '${modalId}' not found.`);
         }
@@ -17,10 +18,19 @@ document.addEventListener('DOMContentLoaded', () => {
         if (modal) {
             modal.classList.add('hidden'); // Add the hidden class to hide the modal
             modal.classList.remove('flex'); // Remove the flex class
+            modal.setAttribute('aria-hidden', 'true'); // Accessibility: Modal is hidden
         } else {
             console.error(`Modal with ID '${modalId}' not found.`);
         }
     }
+
+    // Accessibility: Close modals on pressing the Escape key
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') {
+            const openModals = document.querySelectorAll('.modal.flex');
+            openModals.forEach((modal) => closeModal(modal.id));
+        }
+    });
 
     // Form Validation
     function validateForm() {
@@ -80,13 +90,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeButtons = document.querySelectorAll('[data-modal-close]');
 
     // Open modal buttons
-    openButtons.forEach(button => {
+    openButtons.forEach((button) => {
         const targetModal = button.getAttribute('data-modal-open');
         button.addEventListener('click', () => openModal(targetModal));
     });
 
     // Close modal buttons
-    closeButtons.forEach(button => {
+    closeButtons.forEach((button) => {
         const targetModal = button.getAttribute('data-modal-close');
         button.addEventListener('click', () => closeModal(targetModal));
     });
@@ -94,7 +104,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Form validation on submit
     const form = document.querySelector('form'); // Replace with the correct form selector if needed
     if (form) {
-        form.addEventListener('submit', event => {
+        form.addEventListener('submit', (event) => {
             if (!validateForm()) {
                 event.preventDefault(); // Prevent form submission if validation fails
             }

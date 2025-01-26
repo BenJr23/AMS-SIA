@@ -16,7 +16,7 @@
             <div class="p-4 text-center text-gray-500">
                 <!--Content -->
                     <!-- Profile Header -->
-                    <div class="bg-white shadow-md rounded-lg p-10 flex items-center space-x-4 mb-6">
+                    <div class="bg-white shadow-md rounded-lg p-5 flex items-center space-x-4 mb-6">
                         <!-- Profile Image -->
                         <div class="w-20 h-20 bg-gray-300 rounded-full"></div>
                         <!-- Profile Name -->

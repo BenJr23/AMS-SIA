@@ -9,7 +9,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Presenza</title>
-    @vite(['resources/css/app.css', 'resources/js/app.js','resources/js/component-layout.js'])
+    @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/js/component-layout.js'])
 </head>
 <body class="bg-[#D4D7DA]">
     <nav class="navbar bg-[#183D2C] h-22">
