@@ -1,7 +1,8 @@
-@vite('resources/js/employee.js')
+{{-- @vite('resources/js/employee.js') --}}
 
 
 <x-admin>
+    @vite('resources/js/employee.js')
     @auth
         <!-- Direction of Tabs -->
         <section class="fixed ml-72 px-11 py-6 w-full top-20 left-0">

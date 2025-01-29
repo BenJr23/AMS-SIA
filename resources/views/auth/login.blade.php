@@ -7,6 +7,13 @@
 
         <h1>Login</h1>
 
+        <!-- Displaying error message for incorrect credentials. THIS IS THE CHANGES FOR ERROR MESSAGE. -->
+        @if(session('error'))
+            <div class="text-red-500 text-sm mb-4">
+                <strong>{{ session('error') }}</strong>
+            </div>
+        @endif
+
         <form id="loginForm" action="{{ route('login') }}" method="POST">
             @csrf
             <div class="form-group">
