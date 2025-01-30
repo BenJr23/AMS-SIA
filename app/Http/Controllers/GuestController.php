@@ -22,7 +22,7 @@ class GuestController extends Controller
         ];
 
         // Send a request to System B's API
-        $response = Http::get('https://lms-customer-production.up.railway.app/user?', $apiData);
+        $response = Http::get('https://lms-customer-production.up.railway.app/api/user/fetch?', $apiData);
 
         // Check if the API request was successful
         if ($response->successful()) {
