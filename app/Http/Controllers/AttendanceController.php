@@ -129,10 +129,31 @@ class AttendanceController extends Controller
 
     }
 
+    public function update2(Request $request, Attendance $attendance)
+    {
+        $validated = $request->validate([
+            'time_out' => 'required|date_format:H:i',
+        ]);
+    
+        $attendance->update($validated);    
+        return redirect()->route('guestclockingform')->with('success', 'Attendance and dependent entity created successfully.');
+
+    }
+
     public function destroy(Attendance $attendance)
     {
         $attendance->delete();
 
         return redirect()->route('attendance.index')->with('success', 'Attendance deleted successfully.');
+    }
+
+    public function index2()
+    {
+        $attendances = Attendance::with('dependents')->get();
+        
+        return response()->json([
+            'success' => true,
+            'data' => $attendances
+        ], 200);
     }
 }

@@ -39,8 +39,9 @@
                 exit;
             }
             $dependentEntity = \App\Models\DependentEntity::where('username', $Data['username'])
-                                    ->where('email', $Data['email'])
-                                    ->first();
+                                        ->where('email', $Data['email'])
+                                        ->latest() // Get the latest record first
+                                        ->first();
 
             $pendingAttendance = $dependentEntity
                 ? \App\Models\Attendance::where('id', $dependentEntity->attendance_id)
@@ -51,7 +52,7 @@
 
         @if ($pendingAttendance)
             <!-- Time Out Form -->
-            <form id="timeOutForm" action="{{ route('attendance.update', $pendingAttendance->id) }}" method="POST">
+            <form id="timeOutForm" action="{{ route('attendance.update2', $pendingAttendance->id) }}" method="POST">
                 @csrf
                 @method('PUT')
                 <input type="hidden" id="time_out" name="time_out">
